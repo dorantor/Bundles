@@ -16,6 +16,21 @@ class Bundles
         return $this->builder;
     }
     
+    public function registry()
+    {
+        return $this->builder->registry();
+    }
+    
+    public function bundles()
+    {
+        return $this->builder->registry()->bundles();
+    }
+    
+    public function get($name)
+    {
+        return $this->builder->registry()->get($name);
+    }
+    
     public function httpDispatcher()
     {
         return $this->builder->httpDispatcher();

@@ -23,6 +23,8 @@ class BundlesTest extends \PHPixie\Test\Testcase
             ->getMock();
         
         $this->builder = $this->quickMock('\PHPixie\Bundles\Builder');
+        $this->method($this->builder, 'registry', $this->bundleRegistry, array());
+        
         $this->method($this->bundles, 'buildBuilder', $this->builder, array(
             $this->bundleRegistry
         ), 0);
@@ -67,6 +69,41 @@ class BundlesTest extends \PHPixie\Test\Testcase
     }
     
     /**
+     * @covers ::registry
+     * @covers ::<protected>
+     */
+    public function testRegistry()
+    {
+        $this->assertSame($this->bundleRegistry, $this->bundles->registry());
+    }
+    
+    /**
+     * @covers ::bundles
+     * @covers ::<protected>
+     */
+    public function testBundles()
+    {
+        $bundles = array(
+            'pixie' => $this->getBundle()
+        );
+        
+        $this->method($this->bundleRegistry, 'bundles', $bundles, array(), 0);
+        $this->assertSame($bundles, $this->bundles->bundles());
+    }
+    
+    /**
+     * @covers ::get
+     * @covers ::<protected>
+     */
+    public function testGet()
+    {
+        $bundle = $this->getBundle();
+        
+        $this->method($this->bundleRegistry, 'get', $bundle, array('pixie'), 0);
+        $this->assertSame($bundle, $this->bundles->get('pixie'));
+    }
+    
+    /**
      * @covers ::httpDispatcher
      * @covers ::<protected>
      */
@@ -107,5 +144,10 @@ class BundlesTest extends \PHPixie\Test\Testcase
         $mock = $this->quickMock($class);
         $this->method($this->builder, $method, $mock, array(), 0);
         $this->assertSame($mock, $this->bundles->$method());
+    }
+    
+    protected function getBundle()
+    {
+        $this->quickMock('\PHPixie\Bundles\Bundle');
     }
 }

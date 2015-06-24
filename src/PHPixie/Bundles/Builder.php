@@ -13,6 +13,11 @@ class Builder
         $this->bundleRegistry = $bundleRegistry;
     }
     
+    public function registry()
+    {
+        return $this->bundleRegistry;
+    }
+    
     public function httpDispatcher()
     {
         return $this->instance('httpDispatcher');

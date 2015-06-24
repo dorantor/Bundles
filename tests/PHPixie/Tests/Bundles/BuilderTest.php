@@ -26,6 +26,15 @@ class BuilderTest extends \PHPixie\Test\Testcase
     }
     
     /**
+     * @covers ::registry
+     * @covers ::<protected>
+     */
+    public function testRegistry()
+    {
+        $this->assertSame($this->bundleRegistry, $this->builder->registry());
+    }
+    
+    /**
      * @covers ::httpDispatcher
      * @covers ::<protected>
      */
