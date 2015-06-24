@@ -75,7 +75,7 @@ class ResolverRegistryTest extends \PHPixie\Test\Testcase
             $resolver = $this->quickMock('\PHPixie\Route\Resolvers\Resolver');
         }
             
-        $this->method($bundle, 'filesystemResolver', $resolver, array(), 0);
+        $this->method($bundle, 'routeResolver', $resolver, array(), 0);
         
         if($isRegistry) {
             $nestedResolver = $this->quickMock('\PHPixie\Route\Resolvers\Resolver');

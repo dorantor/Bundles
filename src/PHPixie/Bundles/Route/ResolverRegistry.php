@@ -25,7 +25,7 @@ class ResolverRegistry implements \PHPixie\Route\Resolvers\Registry
         
         if(count($path) > 1) {
             if(!($resolver instanceof \PHPixie\Route\Resolvers\Registry)) {
-                throw new \PHPixie\Bundles\Exception("Route resolver in '{$path[0]}' is not a registry");
+                throw new \PHPixie\Bundles\Exception("Route resolver in '{$path[0]}' is not a bundleRegistry");
             }
             
             $resolver = $resolver->get($path[1]);

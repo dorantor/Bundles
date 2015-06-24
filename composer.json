@@ -1,6 +1,6 @@
 {
     "name": "phpixie/bundles",
-    "description": "HTTP library for PHPixie, implements the PSR-7 standard",
+    "description": "Bundle library for PHPixie",
     "keywords": ["http", "psr-7"],
     "homepage": "http://phpixie.com",
     "type": "library",

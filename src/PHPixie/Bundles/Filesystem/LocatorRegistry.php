@@ -25,7 +25,7 @@ class LocatorRegistry implements \PHPixie\Filesystem\Locators\Registry
         
         if(count($path) > 1) {
             if(!($locator instanceof \PHPixie\Filesystem\Locators\Registry)) {
-                throw new \PHPixie\Bundles\Exception("Filesystem locator in '{$path[0]}' is not a registry");
+                throw new \PHPixie\Bundles\Exception("Filesystem locator in '{$path[0]}' is not a bundleRegistry");
             }
             
             $locator = $locator->get($path[1]);
