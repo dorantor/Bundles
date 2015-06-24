@@ -76,21 +76,21 @@ class BundlesTest extends \PHPixie\Test\Testcase
     }
     
     /**
-     * @covers ::filesystemLocatorRegistry
+     * @covers ::filesystemLocators
      * @covers ::<protected>
      */
-    public function testFilesystemLocatorRegistry()
+    public function testFilesystemLocators()
     {
-        $this->instanceTest('filesystemLocatorRegistry', '\PHPixie\Bundles\Filesystem\LocatorRegistry');
+        $this->instanceTest('filesystemLocators', '\PHPixie\Bundles\FilesystemLocators');
     }
     
     /**
-     * @covers ::routeResolverRegistry
+     * @covers ::routeResolvers
      * @covers ::<protected>
      */
-    public function testRouteResolverRegistry()
+    public function testRouteResolvers()
     {
-        $this->instanceTest('routeResolverRegistry', '\PHPixie\Bundles\Route\ResolverRegistry');
+        $this->instanceTest('routeResolvers', '\PHPixie\Bundles\RouteResolvers');
     }
     
     /**

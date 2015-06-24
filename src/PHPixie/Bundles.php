@@ -21,14 +21,14 @@ class Bundles
         return $this->builder->httpDispatcher();
     }
     
-    public function filesystemLocatorRegistry()
+    public function filesystemLocators()
     {
-        return $this->builder->filesystemLocatorRegistry();
+        return $this->builder->filesystemLocators();
     }
     
-    public function routeResolverRegistry()
+    public function routeResolvers()
     {
-        return $this->builder->routeResolverRegistry();
+        return $this->builder->routeResolvers();
     }
     
     public function ormWrappers()

@@ -1,21 +1,21 @@
 <?php
 
-namespace PHPixie\Tests\Bundles\Filesystem;
+namespace PHPixie\Tests\Bundles;
 
 /**
- * @coversDefaultClass \PHPixie\Bundles\Filesystem\LocatorRegistry
+ * @coversDefaultClass \PHPixie\Bundles\FilesystemLocators
  */
-class LocatorRegistryTest extends \PHPixie\Test\Testcase
+class FilesystemLocatorsTest extends \PHPixie\Test\Testcase
 {
     protected $bundleRegistry;
     
-    protected $locatorRegistry;
+    protected $filesystemLocators;
     
     public function setUp()
     {
         $this->bundleRegistry = $this->quickMock('\PHPixie\Bundles\Registry');
         
-        $this->locatorRegistry = new \PHPixie\Bundles\Filesystem\LocatorRegistry(
+        $this->filesystemLocators = new \PHPixie\Bundles\FilesystemLocators(
             $this->bundleRegistry
         );
     }
@@ -35,23 +35,23 @@ class LocatorRegistryTest extends \PHPixie\Test\Testcase
      */
     public function testGet()
     {
-        $locatorRegistry = $this->locatorRegistry;
+        $filesystemLocators = $this->filesystemLocators;
         
         $this->prepareGetTest('pixie', false);
-        $this->assertException(function() use($locatorRegistry) {
-            $locatorRegistry->get('pixie');
+        $this->assertException(function() use($filesystemLocators) {
+            $filesystemLocators->get('pixie');
         }, '\PHPixie\Bundles\Exception');
         
         $locator = $this->prepareGetTest('pixie', true);
-        $this->assertSame($locator, $locatorRegistry->get('pixie'));
+        $this->assertSame($locator, $filesystemLocators->get('pixie'));
         
         $this->prepareGetTest('pixie.trixie', true, true, false);
-        $this->assertException(function() use($locatorRegistry) {
-            $locatorRegistry->get('pixie.trixie');
+        $this->assertException(function() use($filesystemLocators) {
+            $filesystemLocators->get('pixie.trixie');
         }, '\PHPixie\Bundles\Exception');
         
         $locator = $this->prepareGetTest('pixie.trixie', true, true, true);
-        $this->assertSame($locator, $locatorRegistry->get('pixie.trixie'));
+        $this->assertSame($locator, $filesystemLocators->get('pixie.trixie'));
     }
     
     protected function prepareGetTest($name, $providesLocator = false, $nested = false, $isRegistry = false)

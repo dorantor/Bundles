@@ -1,8 +1,8 @@
 <?php
 
-namespace PHPixie\Bundles\Filesystem;
+namespace PHPixie\Bundles;
 
-class LocatorRegistry implements \PHPixie\Filesystem\Locators\Registry
+class FilesystemLocators implements \PHPixie\Filesystem\Locators\Registry
 {
     protected $bundleRegistry;
     
@@ -33,4 +33,4 @@ class LocatorRegistry implements \PHPixie\Filesystem\Locators\Registry
         
         return $locator;
     }
-}   
+}

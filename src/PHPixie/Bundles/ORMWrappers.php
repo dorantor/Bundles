@@ -1,8 +1,8 @@
 <?php
 
-namespace PHPixie\Bundles\ORM;
+namespace PHPixie\Bundles;
 
-class Wrappers
+class ORMWrappers
 {
     protected $wrappersMap;
     protected $maps = array();

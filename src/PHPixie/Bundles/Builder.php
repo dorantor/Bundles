@@ -5,6 +5,7 @@ namespace PHPixie\Bundles;
 class Builder
 {
     protected $bundleRegistry;
+    
     protected $instances = array();
     
     public function __construct($bundleRegistry)
@@ -17,14 +18,14 @@ class Builder
         return $this->instance('httpDispatcher');
     }
     
-    public function filesystemLocatorRegistry()
+    public function filesystemLocators()
     {
-        return $this->instance('filesystemLocatorRegistry');
+        return $this->instance('filesystemLocators');
     }
     
-    public function routeResolverRegistry()
+    public function routeResolvers()
     {
-        return $this->instance('routeResolverRegistry');
+        return $this->instance('routeResolvers');
     }
     
     public function ormWrappers()
@@ -47,18 +48,18 @@ class Builder
         return new Dispatcher\HTTP($this->bundleRegistry);
     }
     
-    protected function buildFilesystemLocatorRegistry()
+    protected function buildFilesystemLocators()
     {
-        return new Filesystem\LocatorRegistry($this->bundleRegistry);
+        return new FilesystemLocators($this->bundleRegistry);
+    }
+    
+    protected function buildRouteResolvers()
+    {
+        return new RouteResolvers($this->bundleRegistry);
     }
     
     protected function buildORMWrappers()
     {
-        return new ORM\Wrappers($this->bundleRegistry);
-    }
-    
-    protected function buildRouteResolverRegistry()
-    {
-        return new Route\ResolverRegistry($this->bundleRegistry);
+        return new ORMWrappers($this->bundleRegistry);
     }
 }

@@ -1,13 +1,13 @@
 <?php
 
-namespace PHPixie\Tests\Bundles\ORM;
+namespace PHPixie\Tests\Bundles;
 
 /**
- * @coversDefaultClass \PHPixie\Bundles\ORM\Wrappers
+ * @coversDefaultClass \PHPixie\Bundles\ORMWrappers
  */
-class WrappersTest extends \PHPixie\Test\Testcase
+class ORMWrappersTest extends \PHPixie\Test\Testcase
 {
-    protected $wrappers;
+    protected $ormWrappers;
     
     protected $bundleMap = array();
     protected $wrappersMap = array();
@@ -45,7 +45,7 @@ class WrappersTest extends \PHPixie\Test\Testcase
         $bundleRegistry =  $this->quickMock('\PHPixie\Bundles\Registry');
         $this->method($bundleRegistry, 'bundles', $bundles, array());
         
-        $this->wrappers = new \PHPixie\Bundles\ORM\Wrappers(
+        $this->ormWrappers = new \PHPixie\Bundles\ORMWrappers(
             $bundleRegistry
         );
     }
@@ -74,7 +74,7 @@ class WrappersTest extends \PHPixie\Test\Testcase
                 $expect[]=$bundleName.$suffix.'2';
             }
             
-            $this->assertSame($expect, $this->wrappers->$type());
+            $this->assertSame($expect, $this->ormWrappers->$type());
         }
     }
     
@@ -114,7 +114,7 @@ class WrappersTest extends \PHPixie\Test\Testcase
                 $wrappers = $this->wrappersMap[$bundleName];
                 $this->method($wrappers, $method, $wrapper, array($wrapped), 0);
                 
-                $this->assertSame($wrapper, $this->wrappers->$method($wrapped));
+                $this->assertSame($wrapper, $this->ormWrappers->$method($wrapped));
             }
         }
     }

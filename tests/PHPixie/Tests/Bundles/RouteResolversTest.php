@@ -1,21 +1,21 @@
 <?php
 
-namespace PHPixie\Tests\Bundles\Route;
+namespace PHPixie\Tests\Bundles;
 
 /**
- * @coversDefaultClass \PHPixie\Bundles\Route\ResolverRegistry
+ * @coversDefaultClass \PHPixie\Bundles\RouteResolvers
  */
-class ResolverRegistryTest extends \PHPixie\Test\Testcase
+class RouteResolversTest extends \PHPixie\Test\Testcase
 {
     protected $bundleRegistry;
     
-    protected $resolverRegistry;
+    protected $routeResolvers;
     
     public function setUp()
     {
         $this->bundleRegistry = $this->quickMock('\PHPixie\Bundles\Registry');
         
-        $this->resolverRegistry = new \PHPixie\Bundles\Route\ResolverRegistry(
+        $this->routeResolvers = new \PHPixie\Bundles\RouteResolvers(
             $this->bundleRegistry
         );
     }
@@ -35,23 +35,23 @@ class ResolverRegistryTest extends \PHPixie\Test\Testcase
      */
     public function testGet()
     {
-        $resolverRegistry = $this->resolverRegistry;
+        $routeResolvers = $this->routeResolvers;
         
         $this->prepareGetTest('pixie', false);
-        $this->assertException(function() use($resolverRegistry) {
-            $resolverRegistry->get('pixie');
+        $this->assertException(function() use($routeResolvers) {
+            $routeResolvers->get('pixie');
         }, '\PHPixie\Bundles\Exception');
         
         $resolver = $this->prepareGetTest('pixie', true);
-        $this->assertSame($resolver, $resolverRegistry->get('pixie'));
+        $this->assertSame($resolver, $routeResolvers->get('pixie'));
         
         $this->prepareGetTest('pixie.trixie', true, true, false);
-        $this->assertException(function() use($resolverRegistry) {
-            $resolverRegistry->get('pixie.trixie');
+        $this->assertException(function() use($routeResolvers) {
+            $routeResolvers->get('pixie.trixie');
         }, '\PHPixie\Bundles\Exception');
         
         $resolver = $this->prepareGetTest('pixie.trixie', true, true, true);
-        $this->assertSame($resolver, $resolverRegistry->get('pixie.trixie'));
+        $this->assertSame($resolver, $routeResolvers->get('pixie.trixie'));
     }
     
     protected function prepareGetTest($name, $providesResolver = false, $nested = false, $isRegistry = false)

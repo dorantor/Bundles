@@ -1,8 +1,8 @@
 <?php
 
-namespace PHPixie\Bundles\Route;
+namespace PHPixie\Bundles;
 
-class ResolverRegistry implements \PHPixie\Route\Resolvers\Registry
+class RouteResolvers implements \PHPixie\Route\Resolvers\Registry
 {
     protected $bundleRegistry;
     

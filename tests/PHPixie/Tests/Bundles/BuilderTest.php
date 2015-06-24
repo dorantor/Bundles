@@ -40,31 +40,31 @@ class BuilderTest extends \PHPixie\Test\Testcase
     }
     
     /**
-     * @covers ::filesystemLocatorRegistry
+     * @covers ::filesystemLocators
      * @covers ::<protected>
      */
-    public function testFilesystemLocatorRegistry()
+    public function testFilesystemLocators()
     {
-        $locatorRegistry = $this->builder->filesystemLocatorRegistry();
-        $this->assertInstance($locatorRegistry, '\PHPixie\Bundles\Filesystem\LocatorRegistry', array(
+        $locators = $this->builder->filesystemLocators();
+        $this->assertInstance($locators, '\PHPixie\Bundles\FilesystemLocators', array(
             'bundleRegistry' => $this->bundleRegistry
         ));
         
-        $this->assertSame($locatorRegistry, $this->builder->filesystemLocatorRegistry());
+        $this->assertSame($locators, $this->builder->filesystemLocators());
     }
     
     /**
-     * @covers ::routeResolverRegistry
+     * @covers ::routeResolvers
      * @covers ::<protected>
      */
-    public function testRouteResolverRegistry()
+    public function testRouteResolvers()
     {
-        $resolverRegistry = $this->builder->routeResolverRegistry();
-        $this->assertInstance($resolverRegistry, '\PHPixie\Bundles\Route\ResolverRegistry', array(
+        $resolvers = $this->builder->routeResolvers();
+        $this->assertInstance($resolvers, '\PHPixie\Bundles\RouteResolvers', array(
             'bundleRegistry' => $this->bundleRegistry
         ));
         
-        $this->assertSame($resolverRegistry, $this->builder->routeResolverRegistry());
+        $this->assertSame($resolvers, $this->builder->routeResolvers());
     }
     
     /**
@@ -76,7 +76,7 @@ class BuilderTest extends \PHPixie\Test\Testcase
         $this->method($this->bundleRegistry, 'bundles', array(), array(), 0);
         
         $ormWrappers = $this->builder->ormWrappers();
-        $this->assertInstance($ormWrappers, '\PHPixie\Bundles\ORM\Wrappers');
+        $this->assertInstance($ormWrappers, '\PHPixie\Bundles\ORMWrappers');
         
         $this->assertSame($ormWrappers, $this->builder->ormWrappers());
     }
