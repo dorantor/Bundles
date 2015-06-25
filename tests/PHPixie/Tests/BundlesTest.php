@@ -113,12 +113,12 @@ class BundlesTest extends \PHPixie\Test\Testcase
     }
     
     /**
-     * @covers ::filesystemLocators
+     * @covers ::templateLocators
      * @covers ::<protected>
      */
-    public function testFilesystemLocators()
+    public function testTemplateLocators()
     {
-        $this->instanceTest('filesystemLocators', '\PHPixie\Bundles\FilesystemLocators');
+        $this->instanceTest('templateLocators', '\PHPixie\Bundles\FilesystemLocators\Template');
     }
     
     /**

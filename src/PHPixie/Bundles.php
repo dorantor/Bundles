@@ -36,9 +36,9 @@ class Bundles
         return $this->builder->httpDispatcher();
     }
     
-    public function filesystemLocators()
+    public function templateLocators()
     {
-        return $this->builder->filesystemLocators();
+        return $this->builder->templateLocators();
     }
     
     public function routeResolvers()

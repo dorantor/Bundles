@@ -23,9 +23,9 @@ class Builder
         return $this->instance('httpDispatcher');
     }
     
-    public function filesystemLocators()
+    public function templateLocators()
     {
-        return $this->instance('filesystemLocators');
+        return $this->instance('templateLocators');
     }
     
     public function routeResolvers()
@@ -53,9 +53,9 @@ class Builder
         return new Dispatcher\HTTP($this->bundleRegistry);
     }
     
-    protected function buildFilesystemLocators()
+    protected function buildTemplateLocators()
     {
-        return new FilesystemLocators($this->bundleRegistry);
+        return new FilesystemLocators\Template($this->bundleRegistry);
     }
     
     protected function buildRouteResolvers()

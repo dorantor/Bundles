@@ -2,7 +2,7 @@
 
 namespace PHPixie\Bundles;
 
-class FilesystemLocators implements \PHPixie\Filesystem\Locators\Registry
+abstract class FilesystemLocators implements \PHPixie\Filesystem\Locators\Registry
 {
     protected $bundleRegistry;
     
@@ -15,13 +15,8 @@ class FilesystemLocators implements \PHPixie\Filesystem\Locators\Registry
     {
         $path = explode('.', $name, 2);
         
-        $bundle = $this->bundleRegistry->get($path[0]);
-        
-        if(!($bundle instanceof \PHPixie\Bundles\Bundle\Provides\FilesystemLocator)) {
-            throw new \PHPixie\Bundles\Exception("Bundle '{$path[0]}' does not provide a filesystem locator");
-        }
-        
-        $locator = $bundle->filesystemLocator();
+        $bundle  = $this->bundleRegistry->get($path[0]);
+        $locator = $this->getBundleLocator($bundle);
         
         if(count($path) > 1) {
             if(!($locator instanceof \PHPixie\Filesystem\Locators\Registry)) {
@@ -33,4 +28,6 @@ class FilesystemLocators implements \PHPixie\Filesystem\Locators\Registry
         
         return $locator;
     }
+    
+    abstract protected function getBundleLocator($bundle);
 }

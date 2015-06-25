@@ -49,17 +49,17 @@ class BuilderTest extends \PHPixie\Test\Testcase
     }
     
     /**
-     * @covers ::filesystemLocators
+     * @covers ::templateLocators
      * @covers ::<protected>
      */
     public function testFilesystemLocators()
     {
-        $locators = $this->builder->filesystemLocators();
-        $this->assertInstance($locators, '\PHPixie\Bundles\FilesystemLocators', array(
+        $locators = $this->builder->templateLocators();
+        $this->assertInstance($locators, '\PHPixie\Bundles\FilesystemLocators\Template', array(
             'bundleRegistry' => $this->bundleRegistry
         ));
         
-        $this->assertSame($locators, $this->builder->filesystemLocators());
+        $this->assertSame($locators, $this->builder->templateLocators());
     }
     
     /**
