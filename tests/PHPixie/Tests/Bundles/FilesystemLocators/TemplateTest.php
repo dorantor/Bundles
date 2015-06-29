@@ -3,7 +3,7 @@
 namespace PHPixie\Tests\Bundles\FilesystemLocators;
 
 /**
- * @coversDefaultClass \PHPixie\Bundles\FilesystemLocators\Test
+ * @coversDefaultClass \PHPixie\Bundles\FilesystemLocators\Template
  */
 class TemplateTest extends \PHPixie\Tests\Bundles\FilesystemLocatorsTest
 {

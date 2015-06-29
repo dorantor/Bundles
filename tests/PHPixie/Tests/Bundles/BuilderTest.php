@@ -35,17 +35,17 @@ class BuilderTest extends \PHPixie\Test\Testcase
     }
     
     /**
-     * @covers ::httpDispatcher
+     * @covers ::httpProcessors
      * @covers ::<protected>
      */
-    public function testHttpDispatcher()
+    public function testHttpProcessors()
     {
-        $httpDispatcher = $this->builder->httpDispatcher();
-        $this->assertInstance($httpDispatcher, '\PHPixie\Bundles\Dispatcher\HTTP', array(
+        $httpProcessors = $this->builder->httpProcessors();
+        $this->assertInstance($httpProcessors, '\PHPixie\Bundles\Processors\HTTP', array(
             'bundleRegistry' => $this->bundleRegistry
         ));
         
-        $this->assertSame($httpDispatcher, $this->builder->httpDispatcher());
+        $this->assertSame($httpProcessors, $this->builder->httpProcessors());
     }
     
     /**

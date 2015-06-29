@@ -31,9 +31,9 @@ class Bundles
         return $this->builder->registry()->get($name);
     }
     
-    public function httpDispatcher()
+    public function httpProcessors()
     {
-        return $this->builder->httpDispatcher();
+        return $this->builder->httpProcessors();
     }
     
     public function templateLocators()

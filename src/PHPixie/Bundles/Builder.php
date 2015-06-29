@@ -18,9 +18,9 @@ class Builder
         return $this->bundleRegistry;
     }
     
-    public function httpDispatcher()
+    public function httpProcessors()
     {
-        return $this->instance('httpDispatcher');
+        return $this->instance('httpProcessors');
     }
     
     public function templateLocators()
@@ -48,9 +48,9 @@ class Builder
         return $this->instances[$name];
     }
     
-    protected function buildHttpDispatcher()
+    protected function buildHttpProcessors()
     {
-        return new Dispatcher\HTTP($this->bundleRegistry);
+        return new Processors\HTTP($this->bundleRegistry);
     }
     
     protected function buildTemplateLocators()

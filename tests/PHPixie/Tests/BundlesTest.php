@@ -104,12 +104,12 @@ class BundlesTest extends \PHPixie\Test\Testcase
     }
     
     /**
-     * @covers ::httpDispatcher
+     * @covers ::httpProcessors
      * @covers ::<protected>
      */
-    public function testHttpDispatcher()
+    public function testHttpProcessors()
     {
-        $this->instanceTest('httpDispatcher', '\PHPixie\Bundles\Dispatcher\HTTP');
+        $this->instanceTest('httpProcessors', '\PHPixie\Bundles\Processors\HTTP');
     }
     
     /**
