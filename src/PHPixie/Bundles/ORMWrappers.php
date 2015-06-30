@@ -24,8 +24,12 @@ class ORMWrappers
                 continue;
             }
             
-            $bundleName  = $bundle->name();
             $ormWrappers = $bundle->ormWrappers();
+            if($ormWrappers === null) {
+                continue;
+            }
+            
+            $bundleName  = $bundle->name();
             
             foreach($types as $type) {
                 foreach($ormWrappers->$type() as $name) {

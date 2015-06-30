@@ -20,7 +20,9 @@ abstract class FilesystemLocators implements \PHPixie\Filesystem\Locators\Regist
         
         if(count($path) > 1) {
             if(!($locator instanceof \PHPixie\Filesystem\Locators\Registry)) {
-                throw new \PHPixie\Bundles\Exception("Filesystem locator in '{$path[0]}' is not a bundleRegistry");
+                throw new \PHPixie\Bundles\Exception(
+                    "Filesystem locator in '{$path[0]}' is not a bundleRegistry"
+                );
             }
             
             $locator = $locator->get($path[1]);

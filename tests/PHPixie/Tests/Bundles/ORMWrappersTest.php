@@ -42,6 +42,10 @@ class ORMWrappersTest extends \PHPixie\Test\Testcase
         
         $bundles[]= $this->quickMock('\PHPixie\Bundles\Bundle');
         
+        $emptyBundle = $this->quickMock('\PHPixie\Bundles\Bundle\Provides\ORMWrappers');
+        $this->method($emptyBundle, 'ormWrappers', null, array());
+        $bundles[]= $emptyBundle;
+        
         $bundleRegistry =  $this->quickMock('\PHPixie\Bundles\Registry');
         $this->method($bundleRegistry, 'bundles', $bundles, array());
         
