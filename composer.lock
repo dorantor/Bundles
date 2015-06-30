@@ -220,12 +220,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPixie/Processors.git",
-                "reference": "07ef80fd1595bb3826930bd528bbc5285004194e"
+                "reference": "2aa1be44ac034f38b959d307d4e32f8dcb736601"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPixie/Processors/zipball/07ef80fd1595bb3826930bd528bbc5285004194e",
-                "reference": "07ef80fd1595bb3826930bd528bbc5285004194e",
+                "url": "https://api.github.com/repos/PHPixie/Processors/zipball/2aa1be44ac034f38b959d307d4e32f8dcb736601",
+                "reference": "2aa1be44ac034f38b959d307d4e32f8dcb736601",
                 "shasum": ""
             },
             "require-dev": {
@@ -260,7 +260,7 @@
                 "Chain",
                 "processors"
             ],
-            "time": "2015-06-29 09:11:44"
+            "time": "2015-06-30 11:38:39"
         },
         {
             "name": "phpixie/route",
