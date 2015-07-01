@@ -11,12 +11,21 @@ abstract class FilesystemLocators implements \PHPixie\Filesystem\Locators\Regist
         $this->bundleRegistry = $bundleRegistry;
     }
     
-    public function get($name)
+    public function get($name, $isRequired = true)
     {
         $path = explode('.', $name, 2);
         
-        $bundle  = $this->bundleRegistry->get($path[0]);
-        $locator = $this->getBundleLocator($bundle);
+        $bundle  = $this->bundleRegistry->get($path[0], $isRequired);
+        
+        if($bundle === null) {
+            return null;
+        }
+        
+        $locator = $this->getBundleLocator($bundle, $isRequired);
+        
+        if($locator === null) {
+            return null;
+        }
         
         if(count($path) > 1) {
             if(!($locator instanceof \PHPixie\Filesystem\Locators\Registry)) {
