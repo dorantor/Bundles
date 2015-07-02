@@ -37,16 +37,24 @@ abstract class FilesystemLocatorsTest extends \PHPixie\Test\Testcase
         $locator = $this->prepareGetTest('pixie');
         $this->assertSame($locator, $filesystemLocators->get('pixie'));
         
-        $this->prepareGetTest('pixie.trixie', true, false);
+        $locator = $this->prepareGetTest('pixie', false);
+        $this->assertSame($locator, $filesystemLocators->get('pixie', false));
+        
+        $this->prepareGetTest('pixie.trixie', true, true, false);
         $this->assertException(function() use($filesystemLocators) {
             $filesystemLocators->get('pixie.trixie');
         }, '\PHPixie\Bundles\Exception');
         
-        $locator = $this->prepareGetTest('pixie.trixie', true, true);
+        $this->prepareGetTest('pixie.trixie', true, true, false);
+        $this->assertException(function() use($filesystemLocators) {
+            $filesystemLocators->get('pixie.trixie');
+        }, '\PHPixie\Bundles\Exception');
+        
+        $locator = $this->prepareGetTest('pixie.trixie', true, true, true);
         $this->assertSame($locator, $filesystemLocators->get('pixie.trixie'));
     }
     
-    protected function prepareGetTest($name, $nested = false, $isRegistry = false)
+    protected function prepareGetTest($name, $isRequired = true, $nested = false, $isRegistry = false)
     {
         $name = explode('.', $name, 2);
         
@@ -57,7 +65,7 @@ abstract class FilesystemLocatorsTest extends \PHPixie\Test\Testcase
         }
             
         $bundle = $this->prepareGetBundleLocator($locator);
-        $this->method($this->bundleRegistry, 'get', $bundle, array($name[0]), 0);
+        $this->method($this->bundleRegistry, 'get', $bundle, array($name[0], $isRequired), 0);
         
         if($isRegistry) {
             $nestedLocator = $this->quickMock('\PHPixie\Filesystem\Locators\Locator');
