@@ -54,7 +54,7 @@ abstract class FilesystemLocatorsTest extends \PHPixie\Test\Testcase
         $this->assertSame($locator, $filesystemLocators->get('pixie.trixie'));
     }
     
-    protected function prepareGetTest($name, $isRequired = true, $nested = false, $isRegistry = false)
+    protected function prepareGetTest($name, $isRequired = true, $exists = true, $isRegistry = false)
     {
         $name = explode('.', $name, 2);
         

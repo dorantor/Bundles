@@ -14,12 +14,14 @@ class TemplateTest extends \PHPixie\Tests\Bundles\FilesystemLocatorsTest
     public function testGetInvalidBundle()
     {
         $bundle = $this->quickMock('\PHPixie\Bundles\Bundle');
-        $this->method($this->bundleRegistry, 'get', $bundle, array('pixie'), 0);
+        $this->method($this->bundleRegistry, 'get', $bundle, array('pixie'));
         
         $filesystemLocators = $this->filesystemLocators;
         $this->assertException(function() use($filesystemLocators) {
             $filesystemLocators->get('pixie');
         }, '\PHPixie\Bundles\Exception');
+        
+        $this->assertSame(null, $filesystemLocators->get('pixie', false));
     }
     
     protected function prepareGetBundleLocator($locator)
