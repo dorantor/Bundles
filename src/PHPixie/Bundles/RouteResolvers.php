@@ -15,15 +15,7 @@ class RouteResolvers implements \PHPixie\Route\Resolvers\Registry
     {
         $path = explode('.', $name, 2);
         
-        $bundle = $this->bundleRegistry->get($path[0]);
-        
-        if(!($bundle instanceof \PHPixie\Bundles\Bundle\Provides\RouteResolver)) {
-            throw new \PHPixie\Bundles\Exception(
-                "Bundle '{$path[0]}' does not provide a route resolver"
-            );
-        }
-        
-        $resolver = $bundle->routeResolver();
+        $resolver = $this->getBundleResolver($path[0]);
         
         if(count($path) > 1) {
             if(!($resolver instanceof \PHPixie\Route\Resolvers\Registry)) {
@@ -37,4 +29,23 @@ class RouteResolvers implements \PHPixie\Route\Resolvers\Registry
         
         return $resolver;
     }
-}   
+    
+    protected function getBundleResolver($name)
+    {
+        $bundle = $this->bundleRegistry->get($name);
+        
+        $resolver = null;
+        
+        if($bundle instanceof \PHPixie\Bundles\Bundle\Provides\RouteResolver) {
+            $resolver = $bundle->routeResolver();
+        }
+        
+        if($resolver !== null) {
+            return $resolver;
+        }
+        
+        throw new \PHPixie\Bundles\Exception(
+            "Bundle '$name' does not provide a route resolver"
+        );
+    }
+}

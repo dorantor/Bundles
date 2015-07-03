@@ -4,10 +4,13 @@ namespace PHPixie\Bundles\FilesystemLocators;
 
 class Template extends \PHPixie\Bundles\FilesystemLocators
 {
-    protected function getBundleLocator($bundle, $isRequired = true)
+    protected function getBundleLocator($bundle, $isRequired)
     {
         if($bundle instanceof \PHPixie\Bundles\Bundle\Provides\TemplateLocator) {
-            return $bundle->templateLocator();
+            $locator = $bundle->templateLocator();
+            if($locator !== null) {
+                return $locator;
+            }
         }
         
         if(!$isRequired) {

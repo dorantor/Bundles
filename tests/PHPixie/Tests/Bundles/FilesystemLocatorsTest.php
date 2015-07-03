@@ -32,50 +32,97 @@ abstract class FilesystemLocatorsTest extends \PHPixie\Test\Testcase
      */
     public function testGet()
     {
-        $filesystemLocators = $this->filesystemLocators;
-        
-        $locator = $this->prepareGetTest('pixie');
-        $this->assertSame($locator, $filesystemLocators->get('pixie'));
-        
-        $locator = $this->prepareGetTest('pixie', false);
-        $this->assertSame($locator, $filesystemLocators->get('pixie', false));
-        
-        $this->prepareGetTest('pixie.trixie', true, true, false);
-        $this->assertException(function() use($filesystemLocators) {
-            $filesystemLocators->get('pixie.trixie');
-        }, '\PHPixie\Bundles\Exception');
-        
-        $this->prepareGetTest('pixie.trixie', true, true, false);
-        $this->assertException(function() use($filesystemLocators) {
-            $filesystemLocators->get('pixie.trixie');
-        }, '\PHPixie\Bundles\Exception');
-        
-        $locator = $this->prepareGetTest('pixie.trixie', true, true, true);
-        $this->assertSame($locator, $filesystemLocators->get('pixie.trixie'));
+        $this->getTest();
+        $this->getTest(true);
+        $this->getTest(true, true);
     }
     
-    protected function prepareGetTest($name, $isRequired = true, $exists = true, $isRegistry = false)
+    protected function getTest($isNested = false, $isRegistry = false)
     {
-        $name = explode('.', $name, 2);
+        $this->filesystemLocators = $this->filesystemLocators();
+        
+        $name = $isNested ? 'pixie:trixie:fairy' : 'pixie';
         
         if($isRegistry) {
             $locator = $this->quickMock('\PHPixie\Filesystem\Locators\Registry');
         }else{
-            $locator = $this->quickMock('\PHPixie\Filesystem\Locators\Locator');
+            $locator = $this->getLocator();
         }
+        
+        $this->prepareGetBundle('pixie', $locator);
+        if($isNested) {
+            if($isRegistry) {
+                $nested = $this->getLocator();
+                $this->method($locator, 'get', $nested, array('trixie:fairy'), 0);
+                $locator = $nested;
+                
+            }else{
+                $locator = null;
+            }
+        }
+        
+        $filesystemLocators = $this->filesystemLocators;
+        if($locator !== null) {
+            $this->assertSame($locator, $filesystemLocators->get($name));
             
-        $bundle = $this->prepareGetBundleLocator($locator);
-        $this->method($this->bundleRegistry, 'get', $bundle, array($name[0], $isRequired), 0);
-        
-        if($isRegistry) {
-            $nestedLocator = $this->quickMock('\PHPixie\Filesystem\Locators\Locator');
-            $this->method($locator, 'get', $nestedLocator, array($name[1]), 0);
-            $locator = $nestedLocator;
+        }else{
+            $this->assertException(function() use($filesystemLocators, $name) {
+                $filesystemLocators->get($name);
+            }, '\PHPixie\Bundles\Exception');
+        }
+    }
+    
+    /**
+     * @covers ::bundleLocator
+     * @covers ::<protected>
+     */
+    public function testBundleLocator()
+    {
+        $this->bundleLocatorTest();
+        $this->bundleLocatorTest(true);
+        $this->bundleLocatorTest(true, true);
+    }
+    
+    protected function bundleLocatorTest($bundleExists = false, $isRequired = true)
+    {
+        $this->filesystemLocators = $this->filesystemLocators();
+        if($bundleExists) {
+            $this->method($this->bundleRegistry, 'get', null, array('pixie', $isRequired), 0);
+            $locator = null;
+        }else{
+            $locator = $this->getLocator();
+            $this->prepareGetBundle('pixie', $locator, $isRequired);
         }
         
-        return $locator;
+        $params = array('pixie');
+        if(!$isRequired) {
+            $params[]= $isRequired;
+        }
+        
+        $callback = array($this->filesystemLocators, 'get');
+        
+        if($locator === null) {
+            $this->assertSame(null, call_user_func_array($callback, $params));
+            
+        }else{
+            for($i=0; $i<2; $i++) {
+                $this->assertSame($locator, call_user_func_array($callback, $params));
+            }
+        }
+    }
+    
+    protected function prepareGetBundle($name, $locator, $isRequired = null)
+    {
+        $params = array('pixie');
+        if($isRequired !== null) {
+            $params[]= $isRequired;
+        }
+        
+        $bundle = $this->prepareGetBundleLocator($locator);
+        $this->method($this->bundleRegistry, 'get', $bundle, $params, 0);
     }
     
     abstract protected function prepareGetBundleLocator($locator);
+    abstract protected function getLocator();
     abstract protected function filesystemLocators();
 }
