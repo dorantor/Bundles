@@ -77,16 +77,16 @@ class BuilderTest extends \PHPixie\Test\Testcase
     }
     
     /**
-     * @covers ::ormWrappers
+     * @covers ::orm
      * @covers ::<protected>
      */
-    public function testOrmWrappers()
+    public function testOrm()
     {
         $this->method($this->bundleRegistry, 'bundles', array(), array(), 0);
         
-        $ormWrappers = $this->builder->ormWrappers();
-        $this->assertInstance($ormWrappers, '\PHPixie\Bundles\ORMWrappers');
+        $orm = $this->builder->orm();
+        $this->assertInstance($orm, '\PHPixie\Bundles\ORM');
         
-        $this->assertSame($ormWrappers, $this->builder->ormWrappers());
+        $this->assertSame($orm, $this->builder->orm());
     }
 }

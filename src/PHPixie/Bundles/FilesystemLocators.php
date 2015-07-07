@@ -23,6 +23,7 @@ abstract class FilesystemLocators implements \PHPixie\Filesystem\Locators\Regist
                     "Filesystem locator in '{$path[0]}' is not a bundle registry"
                 );
             }
+            
             $locator = $locator->get($path[1]);
         }
         

@@ -46,9 +46,9 @@ class Bundles
         return $this->builder->routeResolvers();
     }
     
-    public function ormWrappers()
+    public function orm()
     {
-        return $this->builder->ormWrappers();
+        return $this->builder->orm();
     }
     
     protected function buildBuilder($slice)

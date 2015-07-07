@@ -33,9 +33,9 @@ class Builder
         return $this->instance('routeResolvers');
     }
     
-    public function ormWrappers()
+    public function orm()
     {
-        return $this->instance('ormWrappers');
+        return $this->instance('orm');
     }
     
     protected function instance($name)
@@ -63,8 +63,8 @@ class Builder
         return new RouteResolvers($this->bundleRegistry);
     }
     
-    protected function buildORMWrappers()
+    protected function buildOrm()
     {
-        return new ORMWrappers($this->bundleRegistry);
+        return new ORM($this->bundleRegistry);
     }
 }

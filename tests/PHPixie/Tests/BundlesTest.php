@@ -131,12 +131,12 @@ class BundlesTest extends \PHPixie\Test\Testcase
     }
     
     /**
-     * @covers ::ormWrappers
+     * @covers ::orm
      * @covers ::<protected>
      */
-    public function testOrmWrappers()
+    public function testOrm()
     {
-        $this->instanceTest('ormWrappers', '\PHPixie\Bundles\ORM\Wrappers');
+        $this->instanceTest('orm', '\PHPixie\Bundles\ORM');
     }
     
     protected function instanceTest($method, $class)
