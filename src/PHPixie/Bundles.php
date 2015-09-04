@@ -51,6 +51,11 @@ class Bundles
         return $this->builder->orm();
     }
     
+    public function authRepositories()
+    {
+        return $this->builder->authRepositories();
+    }
+    
     protected function buildBuilder($slice)
     {
         return new Bundles\Builder($slice);

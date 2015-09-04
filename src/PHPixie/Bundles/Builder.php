@@ -38,6 +38,11 @@ class Builder
         return $this->instance('orm');
     }
     
+    public function authRepositories()
+    {
+        return $this->instance('authRepositories');
+    }
+    
     protected function instance($name)
     {
         if(!array_key_exists($name, $this->instances)) {
@@ -66,5 +71,10 @@ class Builder
     protected function buildOrm()
     {
         return new ORM($this->bundleRegistry);
+    }
+    
+    protected function buildAuthRepositories()
+    {
+        return new AuthRepositories($this->bundleRegistry);
     }
 }
