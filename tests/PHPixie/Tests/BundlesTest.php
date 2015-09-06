@@ -131,6 +131,15 @@ class BundlesTest extends \PHPixie\Test\Testcase
     }
     
     /**
+     * @covers ::auth
+     * @covers ::<protected>
+     */
+    public function testAuth()
+    {
+        $this->instanceTest('auth', '\PHPixie\Bundles\Auth');
+    }
+    
+    /**
      * @covers ::orm
      * @covers ::<protected>
      */

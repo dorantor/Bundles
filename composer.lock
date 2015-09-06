@@ -4,20 +4,156 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "58b57f0e6229d8137483a805028254a5",
+    "hash": "0c013ec013850e85fd7396e67201f615",
     "packages": [
+        {
+            "name": "ircmaxell/password-compat",
+            "version": "v1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ircmaxell/password_compat.git",
+                "reference": "5c5cde8822a69545767f7c7f3058cb15ff84614c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ircmaxell/password_compat/zipball/5c5cde8822a69545767f7c7f3058cb15ff84614c",
+                "reference": "5c5cde8822a69545767f7c7f3058cb15ff84614c",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "lib/password.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anthony Ferrara",
+                    "email": "ircmaxell@php.net",
+                    "homepage": "http://blog.ircmaxell.com"
+                }
+            ],
+            "description": "A compatibility library for the proposed simplified password hashing algorithm: https://wiki.php.net/rfc/password_hash",
+            "homepage": "https://github.com/ircmaxell/password_compat",
+            "keywords": [
+                "hashing",
+                "password"
+            ],
+            "time": "2014-11-20 16:49:30"
+        },
+        {
+            "name": "paragonie/random_compat",
+            "version": "v0.9.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/paragonie/random_compat.git",
+                "reference": "f3419a01144c55acbb2c4ab86bdc55e65f23cfed"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/f3419a01144c55acbb2c4ab86bdc55e65f23cfed",
+                "reference": "f3419a01144c55acbb2c4ab86bdc55e65f23cfed",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "lib/random.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Paragon Initiative Enterprises",
+                    "email": "security@paragonie.com",
+                    "homepage": "https://paragonie.com"
+                }
+            ],
+            "description": "PHP 5.x polyfill for random_bytes() and random_int() from PHP 7",
+            "keywords": [
+                "csprng",
+                "pseudorandom",
+                "random"
+            ],
+            "time": "2015-09-01 06:49:33"
+        },
+        {
+            "name": "phpixie/auth",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHPixie/Auth.git",
+                "reference": "d9484bb64f966324e59c69693163dbe949e11c41"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHPixie/Auth/zipball/d9484bb64f966324e59c69693163dbe949e11c41",
+                "reference": "d9484bb64f966324e59c69693163dbe949e11c41",
+                "shasum": ""
+            },
+            "require": {
+                "ircmaxell/password-compat": "1.*",
+                "paragonie/random_compat": "0.*",
+                "phpixie/database": "3.*@dev",
+                "phpixie/http": "3.*@dev",
+                "phpixie/slice": "3.*@dev",
+                "psr/http-message": "1.*@dev"
+            },
+            "require-dev": {
+                "phpixie/test": "3.*@dev"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PHPixie\\": "src/PHPixie",
+                    "PHPixie\\Tests\\": "tests/PHPixie/Tests"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD"
+            ],
+            "authors": [
+                {
+                    "name": "Roman Tsiupa",
+                    "email": "draconyster@gmail.com",
+                    "homepage": "http://dracony.org"
+                }
+            ],
+            "description": "Auth library for PHPixie",
+            "homepage": "http://phpixie.com",
+            "keywords": [
+                "auth"
+            ],
+            "time": "2015-09-04 01:37:16"
+        },
         {
             "name": "phpixie/database",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPixie/Database.git",
-                "reference": "514bdbaec35a22281c70f71c5b50370a6e5434c3"
+                "reference": "041ca9c00c575071dfb5498e34f4abc1d0fce59c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPixie/Database/zipball/514bdbaec35a22281c70f71c5b50370a6e5434c3",
-                "reference": "514bdbaec35a22281c70f71c5b50370a6e5434c3",
+                "url": "https://api.github.com/repos/PHPixie/Database/zipball/041ca9c00c575071dfb5498e34f4abc1d0fce59c",
+                "reference": "041ca9c00c575071dfb5498e34f4abc1d0fce59c",
                 "shasum": ""
             },
             "require": {
@@ -57,7 +193,7 @@
                 "postgresql",
                 "sqlite"
             ],
-            "time": "2015-03-15 22:04:35"
+            "time": "2015-07-21 21:58:02"
         },
         {
             "name": "phpixie/filesystem",
@@ -116,12 +252,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPixie/HTTP.git",
-                "reference": "b2696997b385eef9c2333a749e325e76d51bd970"
+                "reference": "ea57c81cea16e66cd9f7b964ef3009fe1d9cc9c5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPixie/HTTP/zipball/b2696997b385eef9c2333a749e325e76d51bd970",
-                "reference": "b2696997b385eef9c2333a749e325e76d51bd970",
+                "url": "https://api.github.com/repos/PHPixie/HTTP/zipball/ea57c81cea16e66cd9f7b964ef3009fe1d9cc9c5",
+                "reference": "ea57c81cea16e66cd9f7b964ef3009fe1d9cc9c5",
                 "shasum": ""
             },
             "require": {
@@ -160,7 +296,7 @@
                 "http",
                 "psr-7"
             ],
-            "time": "2015-06-24 16:01:18"
+            "time": "2015-09-04 00:56:20"
         },
         {
             "name": "phpixie/orm",
@@ -168,12 +304,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPixie/ORM.git",
-                "reference": "5e8fa70c16800773bae066246d27e68f304add76"
+                "reference": "1daa47fbe417a5f716087898aaa3c220aea85568"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPixie/ORM/zipball/5e8fa70c16800773bae066246d27e68f304add76",
-                "reference": "5e8fa70c16800773bae066246d27e68f304add76",
+                "url": "https://api.github.com/repos/PHPixie/ORM/zipball/1daa47fbe417a5f716087898aaa3c220aea85568",
+                "reference": "1daa47fbe417a5f716087898aaa3c220aea85568",
                 "shasum": ""
             },
             "require": {
@@ -212,7 +348,7 @@
                 "database",
                 "orm"
             ],
-            "time": "2015-06-12 15:15:33"
+            "time": "2015-08-29 13:35:10"
         },
         {
             "name": "phpixie/processors",
@@ -220,12 +356,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPixie/Processors.git",
-                "reference": "2aa1be44ac034f38b959d307d4e32f8dcb736601"
+                "reference": "78f135bf995e062231e99c10d9881aa47acbac4b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPixie/Processors/zipball/2aa1be44ac034f38b959d307d4e32f8dcb736601",
-                "reference": "2aa1be44ac034f38b959d307d4e32f8dcb736601",
+                "url": "https://api.github.com/repos/PHPixie/Processors/zipball/78f135bf995e062231e99c10d9881aa47acbac4b",
+                "reference": "78f135bf995e062231e99c10d9881aa47acbac4b",
                 "shasum": ""
             },
             "require-dev": {
@@ -260,7 +396,7 @@
                 "Chain",
                 "processors"
             ],
-            "time": "2015-06-30 11:38:39"
+            "time": "2015-07-08 17:48:05"
         },
         {
             "name": "phpixie/route",
@@ -268,12 +404,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPixie/Route.git",
-                "reference": "6f64c58d02789e67d4aa81b6be434934e3394b83"
+                "reference": "10162d1062c7cf78368bb1a62df9bc5eda555eaf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPixie/Route/zipball/6f64c58d02789e67d4aa81b6be434934e3394b83",
-                "reference": "6f64c58d02789e67d4aa81b6be434934e3394b83",
+                "url": "https://api.github.com/repos/PHPixie/Route/zipball/10162d1062c7cf78368bb1a62df9bc5eda555eaf",
+                "reference": "10162d1062c7cf78368bb1a62df9bc5eda555eaf",
                 "shasum": ""
             },
             "require": {
@@ -314,7 +450,7 @@
                 "router",
                 "routing"
             ],
-            "time": "2015-06-05 15:29:19"
+            "time": "2015-09-04 00:59:28"
         },
         {
             "name": "phpixie/slice",
@@ -472,6 +608,7 @@
         "phpixie/slice": 20,
         "phpixie/http": 20,
         "psr/http-message": 20,
+        "phpixie/auth": 20,
         "phpixie/test": 20
     },
     "prefer-stable": false,

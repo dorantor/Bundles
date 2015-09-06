@@ -2,7 +2,7 @@
 
 namespace PHPixie\Bundles;
 
-class AuthRepositories implements \PHPixie\Auth\Repositories\Registry
+class Auth implements \PHPixie\Auth\Repositories\Registry
 {
     protected $bundleRegistry = array();
     
@@ -16,15 +16,26 @@ class AuthRepositories implements \PHPixie\Auth\Repositories\Registry
         $split = explode('.', $name, 2);
         list($bundleName, $name) = $split;
         
-        $bundle = $this->bundleRegistry->get($bundleName);
+        $bundle = $this->getAuthBundle($bundleName);
         
-        if($bundle instanceof Bundle\Provides\AuthRepositories) {
-            $authRepositories = $bundle->authRepositories();    
+        if($bundle !== null) {
+            $authRepositories = $bundle->authRepositories();
             if($authRepositories !== null) {
                 return $authRepositories->repository($name);
             }
         }
         
         throw new \PHPixie\Bundles\Exception("Bundle '$bundleName' does not provide auth repositories");
+    }
+    
+    protected function getAuthBundle($bundleName)
+    {
+        $bundle = $this->bundleRegistry->get($bundleName);
+        
+        if(!($bundle instanceof Bundle\Provides\Auth)) {
+            return null;
+        }
+        
+        return $bundle;
     }
 }

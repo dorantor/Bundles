@@ -38,9 +38,9 @@ class Builder
         return $this->instance('orm');
     }
     
-    public function authRepositories()
+    public function auth()
     {
-        return $this->instance('authRepositories');
+        return $this->instance('auth');
     }
     
     protected function instance($name)
@@ -73,8 +73,8 @@ class Builder
         return new ORM($this->bundleRegistry);
     }
     
-    protected function buildAuthRepositories()
+    protected function buildAuth()
     {
-        return new AuthRepositories($this->bundleRegistry);
+        return new Auth($this->bundleRegistry);
     }
 }

@@ -35,6 +35,20 @@ class BuilderTest extends \PHPixie\Test\Testcase
     }
     
     /**
+     * @covers ::auth
+     * @covers ::<protected>
+     */
+    public function testAuth()
+    {
+        $auth = $this->builder->auth();
+        $this->assertInstance($auth, '\PHPixie\Bundles\Auth', array(
+            'bundleRegistry' => $this->bundleRegistry
+        ));
+        
+        $this->assertSame($auth, $this->builder->auth());
+    }
+    
+    /**
      * @covers ::httpProcessors
      * @covers ::<protected>
      */
