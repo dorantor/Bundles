@@ -13,18 +13,15 @@
         }
     ],
     "require": {
-        "phpixie/route": "3.*@dev",
-        "phpixie/database": "3.*@dev",
-        "phpixie/orm": "3.*@dev",
-        "phpixie/filesystem": "3.*@dev",
-        "phpixie/processors": "3.*@dev",
-        "phpixie/slice": "3.*@dev",
-        "phpixie/http": "3.*@dev",
-        "psr/http-message": "1.0.*@dev",
-        "phpixie/auth": "3.*@dev"
+        "phpixie/auth-login": "~3.0",
+        "phpixie/processors": "~3.0",
+        "phpixie/route": "~3.0",
+        "phpixie/orm": "~3.0",
+        "phpixie/filesystem": "~3.0",
+        "phpixie/slice": "~3.0"
     },
     "require-dev": {
-        "phpixie/test": "3.*@dev"
+        "phpixie/test": "~3.0"
     },
     "autoload": {
         "psr-4": {
