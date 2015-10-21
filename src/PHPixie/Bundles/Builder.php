@@ -5,12 +5,19 @@ namespace PHPixie\Bundles;
 class Builder
 {
     protected $bundleRegistry;
+    protected $configData;
     
     protected $instances = array();
     
-    public function __construct($bundleRegistry)
+    public function __construct($bundleRegistry, $configData)
     {
         $this->bundleRegistry = $bundleRegistry;
+        $this->configData     = $configData;
+    }
+    
+    public function config($name)
+    {
+        return $this->configData->slice($name);
     }
     
     public function registry()

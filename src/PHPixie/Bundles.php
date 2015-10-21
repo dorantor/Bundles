@@ -5,10 +5,14 @@ namespace PHPixie;
 class Bundles
 {
     protected $builder;
+    protected $configData;
     
-    public function __construct($bundleRegistry)
+    public function __construct($bundleRegistry, $configData)
     {
-        $this->builder = $this->buildBuilder($bundleRegistry);
+        $this->builder = $this->buildBuilder(
+            $bundleRegistry,
+            $configData
+        );
     }
     
     public function builder()
@@ -30,6 +34,11 @@ class Bundles
     {
         return $this->builder->registry()->get($name);
     }
+    
+    public function config($name)
+    {
+        return $this->builder->config($name);
+    }    
     
     public function httpProcessors()
     {
@@ -56,8 +65,8 @@ class Bundles
         return $this->builder->auth();
     }
     
-    protected function buildBuilder($slice)
+    protected function buildBuilder($slice, $configData)
     {
-        return new Bundles\Builder($slice);
+        return new Bundles\Builder($slice, $configData);
     }
 }

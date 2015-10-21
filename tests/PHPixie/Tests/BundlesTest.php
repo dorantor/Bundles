@@ -8,6 +8,7 @@ namespace PHPixie\Tests;
 class BundlesTest extends \PHPixie\Test\Testcase
 {
     protected $bundleRegistry;
+    protected $configData;
     
     protected $bundles;
     
@@ -16,6 +17,7 @@ class BundlesTest extends \PHPixie\Test\Testcase
     public function setUp()
     {
         $this->bundleRegistry = $this->quickMock('\PHPixie\Bundles\Registry');
+        $this->configData     = $this->getSliceData();
         
         $this->bundles = $this->getMockBuilder('\PHPixie\Bundles')
             ->setMethods(array('buildBuilder'))
@@ -26,11 +28,13 @@ class BundlesTest extends \PHPixie\Test\Testcase
         $this->method($this->builder, 'registry', $this->bundleRegistry, array());
         
         $this->method($this->bundles, 'buildBuilder', $this->builder, array(
-            $this->bundleRegistry
+            $this->bundleRegistry,
+            $this->configData
         ), 0);
         
         $this->bundles->__construct(
-            $this->bundleRegistry
+            $this->bundleRegistry,
+            $this->configData
         );
     }
     
@@ -50,12 +54,14 @@ class BundlesTest extends \PHPixie\Test\Testcase
     public function testBuildBuilder()
     {
         $this->bundles = new \PHPixie\Bundles(
-            $this->bundleRegistry
+            $this->bundleRegistry,
+            $this->configData
         );
         
         $builder = $this->bundles->builder();
         $this->assertInstance($builder, '\PHPixie\Bundles\Builder', array(
-            'bundleRegistry' => $this->bundleRegistry
+            'bundleRegistry' => $this->bundleRegistry,
+            'configData'     => $this->configData
         ));
     }
     
@@ -101,6 +107,18 @@ class BundlesTest extends \PHPixie\Test\Testcase
         
         $this->method($this->bundleRegistry, 'get', $bundle, array('pixie'), 0);
         $this->assertSame($bundle, $this->bundles->get('pixie'));
+    }
+    
+    /**
+     * @covers ::config
+     * @covers ::<protected>
+     */
+    public function testConfig()
+    {
+        $sliceData = $this->getSliceData();
+        
+        $this->method($this->builder, 'config', $sliceData, array('pixie'), 0);
+        $this->assertSame($sliceData, $this->bundles->config('pixie'));
     }
     
     /**
@@ -158,5 +176,10 @@ class BundlesTest extends \PHPixie\Test\Testcase
     protected function getBundle()
     {
         $this->quickMock('\PHPixie\Bundles\Bundle');
+    }
+    
+    protected function getSliceData()
+    {
+        return $this->quickMock('\PHPixie\Slice\Data');
     }
 }

@@ -8,12 +8,19 @@ namespace PHPixie\Tests\Bundles;
 class BuilderTest extends \PHPixie\Test\Testcase
 {
     protected $bundleRegistry;
+    protected $configData;
+    
     protected $builder;
     
     public function setUp()
     {
         $this->bundleRegistry = $this->quickMock('\PHPixie\Bundles\Registry');
-        $this->builder  = new \PHPixie\Bundles\Builder($this->bundleRegistry);
+        $this->configData     = $this->getSliceData();
+        
+        $this->builder  = new \PHPixie\Bundles\Builder(
+            $this->bundleRegistry,
+            $this->configData
+        );
     }
     
     /**
@@ -32,6 +39,18 @@ class BuilderTest extends \PHPixie\Test\Testcase
     public function testRegistry()
     {
         $this->assertSame($this->bundleRegistry, $this->builder->registry());
+    }
+    
+    /**
+     * @covers ::config
+     * @covers ::<protected>
+     */
+    public function testConfig()
+    {
+        $sliceData = $this->getSliceData();
+        
+        $this->method($this->configData, 'slice', $sliceData, array('pixie'), 0);
+        $this->assertSame($sliceData, $this->builder->config('pixie'));
     }
     
     /**
@@ -102,5 +121,10 @@ class BuilderTest extends \PHPixie\Test\Testcase
         $this->assertInstance($orm, '\PHPixie\Bundles\ORM');
         
         $this->assertSame($orm, $this->builder->orm());
+    }
+    
+    protected function getSliceData()
+    {
+        return $this->quickMock('\PHPixie\Slice\Data');
     }
 }
