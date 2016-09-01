@@ -18,7 +18,8 @@
         "phpixie/route": "~3.0",
         "phpixie/orm": "~3.0",
         "phpixie/filesystem": "~3.0",
-        "phpixie/slice": "~3.0"
+        "phpixie/slice": "~3.0",
+        "phpixie/console" : "~3.1"
     },
     "require-dev": {
         "phpixie/test": "~3.0"

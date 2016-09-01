@@ -50,6 +50,11 @@ class Builder
         return $this->instance('auth');
     }
     
+    public function console()
+    {
+        return $this->instance('console');
+    }
+    
     protected function instance($name)
     {
         if(!array_key_exists($name, $this->instances)) {
@@ -83,5 +88,10 @@ class Builder
     protected function buildAuth()
     {
         return new Auth($this->bundleRegistry);
+    }
+    
+    protected function buildConsole()
+    {
+        return new Console($this->bundleRegistry);
     }
 }

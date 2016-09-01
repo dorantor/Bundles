@@ -65,6 +65,11 @@ class Bundles
         return $this->builder->auth();
     }
     
+    public function console()
+    {
+        return $this->builder->console();
+    }
+    
     protected function buildBuilder($slice, $configData)
     {
         return new Bundles\Builder($slice, $configData);
