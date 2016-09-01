@@ -20,7 +20,7 @@ class Console implements \PHPixie\Console\Registry\Provider
                 continue;
             }
             
-            $provider = $bundle->consoleCommands();
+            $provider = $bundle->consoleProvider();
             if($provider === null) {
                 continue;
             }
@@ -38,7 +38,7 @@ class Console implements \PHPixie\Console\Registry\Provider
         list($bundleName, $commandName) = explode(':', $name, 2);
         
         $bundle = $this->bundleRegistry->get($bundleName);
-        $provider = $bundle->consoleCommands();
+        $provider = $bundle->consoleProvider();
         
         return $provider->buildCommand($commandName, $commandConfig);
     }
