@@ -35,8 +35,10 @@ class Console implements \PHPixie\Console\Registry\Provider
     
     public function buildCommand($name, $commandConfig)
     {
-        list($bundleName, $commandName) = explode(':', $name, 2);
+        $explodedName = explode(':', $name, 2);
         
+        list($bundleName, $commandName) = $explodedName;
+            
         $bundle = $this->bundleRegistry->get($bundleName);
         $provider = $bundle->consoleProvider();
         
