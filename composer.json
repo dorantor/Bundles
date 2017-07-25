@@ -16,7 +16,7 @@
         "phpixie/auth-login": "~3.0",
         "phpixie/processors": "~3.0",
         "phpixie/route": "~3.0",
-        "phpixie/orm": "~3.0",
+        "phpixie/orm": "dev-dorantor@dev",
         "phpixie/filesystem": "~3.0",
         "phpixie/slice": "~3.0",
         "phpixie/console" : "~3.1"
